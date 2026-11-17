@@ -1,0 +1,55 @@
+\doxysection{app Namespace Reference}
+\hypertarget{namespaceapp}{}\label{namespaceapp}\index{app@{app}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceapp_a149eb92716c1084a935e04a8d95f7347}{index}} ()
+\item 
+\doxymbox{\hyperlink{namespaceapp_af3e4aef783c05cbfb5906c6d5d29f9fc}{print\+\_\+class}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceapp_a675b4ea702c13dc4b8c05f985a25b496}\label{namespaceapp_a675b4ea702c13dc4b8c05f985a25b496} 
+{\bfseries app} = Flask(\+\_\+\+\_\+name\+\_\+\_)
+\begin{DoxyCompactList}\small\item\em The Flask application instance. \end{DoxyCompactList}\item 
+\Hypertarget{namespaceapp_ab4a362027d4aa3246e0e0f57ebf177b0}\label{namespaceapp_ab4a362027d4aa3246e0e0f57ebf177b0} 
+{\bfseries debug}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@file app.py
+@brief Flask web application entry point.
+
+@details Defines the Flask app and its routes. Imports helper functions
+from api.py and serves the HTML templates.
+\end{DoxyVerb}
+ 
+
+\label{namespaceapp_doc-func-members}
+\Hypertarget{namespaceapp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceapp_a149eb92716c1084a935e04a8d95f7347}\index{app@{app}!index@{index}}
+\index{index@{index}!app@{app}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily \label{namespaceapp_a149eb92716c1084a935e04a8d95f7347} 
+index (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Serves the home page.
+
+@details Renders index.html and passes the current counter value to it.
+@return The rendered HTML page.
+\end{DoxyVerb}
+ \Hypertarget{namespaceapp_af3e4aef783c05cbfb5906c6d5d29f9fc}\index{app@{app}!print\_class@{print\_class}}
+\index{print\_class@{print\_class}!app@{app}}
+\doxysubsubsection{\texorpdfstring{print\_class()}{print\_class()}}
+{\footnotesize\ttfamily \label{namespaceapp_af3e4aef783c05cbfb5906c6d5d29f9fc} 
+print\+\_\+class (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Returns the class name from the API helper.
+
+@details Calls api_func_one() with the course name "English 355".
+@return The course name as the response body.
+\end{DoxyVerb}
+ 
