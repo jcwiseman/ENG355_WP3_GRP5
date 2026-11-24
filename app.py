@@ -1,35 +1,49 @@
-"""@file app.py
-@brief Flask web application entry point.
+import inspect
 
-@details Defines the Flask app and its routes. Imports helper functions
-from api.py and serves the HTML templates.
-"""
+from flask import Flask, jsonify, redirect, render_template, request, url_for
 
-from flask import Flask, render_template, request, jsonify
-from api import api_func_one
+import api
 
-## @brief The Flask application instance.
 app = Flask(__name__)
 
+# Every public function defined in api.py, by name
+FUNCTIONS = {
+    name: func
+    for name, func in inspect.getmembers(api, inspect.isfunction)
+    if func.__module__ == api.__name__ and not name.startswith("_")
+}
 
-@app.route("/", methods=["GET"])
+
+@app.route("/")
 def index():
-    """@brief Serves the home page.
+    functions = {
+        name: list(inspect.signature(func).parameters)
+        for name, func in FUNCTIONS.items()
+    }
+    return render_template("index.html", functions=functions)
 
-    @details Renders index.html and passes the current counter value to it.
-    @return The rendered HTML page.
-    """
-    return render_template("index.html", counter=counter)
+
+@app.route("/docs")
+def docs():
+    return redirect(url_for("static", filename="docs.html"))
 
 
-@app.route("/print-class", methods=["GET"])
-def print_class():
-    """@brief Returns the class name from the API helper.
+@app.route("/api/<name>")
+def call(name):
+    if name not in FUNCTIONS:
+        return jsonify(error=f"no function named '{name}'"), 404
 
-    @details Calls api_func_one() with the course name "English 355".
-    @return The course name as the response body.
-    """
-    return api_func_one("English 355")
+    func = FUNCTIONS[name]
+    args = request.args.to_dict()
+    try:
+        inspect.signature(func).bind(**args)
+    except TypeError as e:
+        return jsonify(error=str(e)), 400
+
+    try:
+        return jsonify(result=func(**args))
+    except ValueError as e:
+        return jsonify(error=str(e)), 400
 
 
 if __name__ == "__main__":

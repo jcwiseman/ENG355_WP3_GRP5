@@ -1,34 +1,73 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="{{url_for('static', filename='project.css')}}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ENG 355 API</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body>
+    <main>
+      <h1>ENG 355 API</h1>
+      <p>Math, but with animals. <a href="{{ url_for('docs') }}">Read the docs</a></p>
 
+      <form id="form">
+        <label>Function
+          <select id="function">
+            {% for name in functions %}
+            <option>{{ name }}</option>
+            {% endfor %}
+          </select>
+        </label>
+        <div id="params"></div>
+        <button>Calculate</button>
+      </form>
 
-    <div class="page_wrapper">
+      <output id="result" for="function params"></output>
+    </main>
 
-      <div class="top_row_wrapper">
-        <div class="title">ENG 355 API</div>
-      </div>
+    <script>
+      const functions = {{ functions | tojson }};
+      const select = document.getElementById("function");
+      const params = document.getElementById("params");
+      const result = document.getElementById("result");
 
-      <div class="buttons">
+      // Show one text box per parameter of the selected function
+      function showParams() {
+        params.replaceChildren();
+        result.textContent = "";
+        for (const name of functions[select.value] || []) {
+          const label = document.createElement("label");
+          const input = document.createElement("input");
+          input.name = name;
+          label.append(name, input);
+          params.append(label);
+        }
+      }
 
-        <button class="reset_button" onclick="reset()">
-          Do something
-        </button>
-      </div>
+      async function calculate(event) {
+        event.preventDefault();
+        const query = new URLSearchParams();
+        // Blank boxes are left out so default arguments work
+        for (const input of params.querySelectorAll("input")) {
+          if (input.value) query.set(input.name, input.value);
+        }
+        try {
+          const response = await fetch(`/api/${select.value}?${query}`);
+          const data = await response.json();
+          result.className = response.ok ? "" : "error";
+          result.textContent = !response.ok ? data.error
+            : typeof data.result === "string" ? data.result
+            : JSON.stringify(data.result);
+        } catch {
+          result.className = "error";
+          result.textContent = "Something went wrong on the server.";
+        }
+      }
 
-      <button class="finish_button" onclick="finish()">
-        Do something else
-      </button>
-
-
-
-
-
-    </div>
-
+      select.addEventListener("change", showParams);
+      document.getElementById("form").addEventListener("submit", calculate);
+      showParams();
+    </script>
   </body>
 </html>
-

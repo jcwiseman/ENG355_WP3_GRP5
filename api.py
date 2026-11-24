@@ -1,15 +1,25 @@
-"""@file api.py
-@brief Helper functions used by the Flask API routes.
+"""Animal math functions.
 
-@details Contains small utility functions that are imported into app.py
-and called from the route handlers.
+Every function in this file that doesn't start with an underscore is available
+at /api/<function name>. Arguments arrive as strings. Raise ValueError to send
+an error message back to the user.
 """
 
+_SQUARE_ROOTS = {
+    "cat": "kitten",
+    "dog": "puppy",
+    "cow": "calf",
+}
 
-def api_func_one(name):
-    """@brief Returns the name it is given.
 
-    @param name The name to return (e.g. a course name such as "English 355").
-    @return The same value that was passed in as @p name.
-    """
-    return name
+def sqrt(animal):
+    """Return the square root of an animal (its baby)."""
+    animal = animal.strip().lower()
+    if animal not in _SQUARE_ROOTS:
+        raise ValueError(f"'{animal}' has no known square root")
+    return _SQUARE_ROOTS[animal]
+
+
+def add(a, b):
+    """Add two animals together."""
+    return f"{a.strip().lower()}-{b.strip().lower()}"

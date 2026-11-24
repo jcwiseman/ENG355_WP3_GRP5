@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!--
+  Fill in anything in [square brackets].
+
+  To add a function:
+    1. Copy a whole <article class="function"> block and change its id
+    2. Add a row to the table at the top of its category
+    3. Add a link in the sidebar
+  Delete any heading (Notes, See Also, ...) a function doesn't need.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[Library Name] Documentation</title>
+  <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#top">[Library Name]</a>
+  <a href="#getting-started">User Guide</a>
+  <a href="#reference">API Reference</a>
+  <a href="/">Demo</a>
+  <span class="version">v1.0</span>
+</header>
+
+<div class="layout">
+
+<nav class="sidebar" aria-label="Contents">
+  <h2>User Guide</h2>
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#getting-started">Getting started</a></li>
+    <li><a href="#concepts">Key concepts</a></li>
+  </ul>
+
+  <h2>API Reference</h2>
+  <ul>
+    <li><a href="#basic">Basic operations</a>
+      <ul>
+        <li><a href="#sqrt">sqrt</a></li>
+        <li><a href="#add">add</a></li>
+      </ul>
+    </li>
+    <li><a href="#category-two">[Category two]</a>
+      <ul>
+        <li><a href="#function-name">[function_name]</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>More</h2>
+  <ul>
+    <li><a href="#errors">Errors</a></li>
+    <li><a href="#glossary">Glossary</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#release-notes">Release notes</a></li>
+  </ul>
+</nav>
+
+<main id="top">
+  <h1>[Library Name] documentation</h1>
+
+  <!-- ==================== USER GUIDE ==================== -->
+
+  <section id="introduction">
+    <h2>Introduction</h2>
+    <p>[What the library is, who it is for, and why they need it.]</p>
+  </section>
+
+  <section id="getting-started">
+    <h2>Getting started</h2>
+
+    <h3>Installation</h3>
+    <p>[What the reader needs before starting.]</p>
+<pre><code>pip install -r requirements.txt
+python app.py</code></pre>
+
+    <h3>Your first request</h3>
+    <p>[Explain the example.]</p>
+<pre><code>GET /api/sqrt?animal=cat
+
+{"result": "kitten"}</code></pre>
+
+    <p class="note"><strong>Note:</strong> [A helpful tip.]</p>
+  </section>
+
+  <section id="concepts">
+    <h2>Key concepts</h2>
+    <h3>[Concept one]</h3>
+    <p>[Explanation.]</p>
+    <h3>[Concept two]</h3>
+    <p>[Explanation.]</p>
+    <p class="warning"><strong>Warning:</strong> [Something to be careful about.]</p>
+  </section>
+
+  <!-- ==================== API REFERENCE ==================== -->
+
+  <section id="reference">
+    <h2>API Reference</h2>
+    <p>[How to call the functions and read the entries below.]</p>
+  </section>
+
+  <section id="basic">
+    <h2>Basic operations</h2>
+    <p>[What these functions have in common.]</p>
+    <table>
+      <thead><tr><th>Function</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><a href="#sqrt"><code>sqrt(animal)</code></a></td><td>Return the square root of an animal.</td></tr>
+        <tr><td><a href="#add"><code>add(a, b)</code></a></td><td>Add two animals together.</td></tr>
+      </tbody>
+    </table>
+
+    <article class="function" id="sqrt">
+      <h3 class="signature">sqrt(<em>animal</em>)</h3>
+      <p>Return the square root of an animal.</p>
+
+      <h4>Parameters</h4>
+      <dl>
+        <dt><strong>animal</strong> : <span>str</span></dt>
+        <dd>The animal to take the square root of.</dd>
+      </dl>
+
+      <h4>Returns</h4>
+      <dl>
+        <dt><strong>result</strong> : <span>str</span></dt>
+        <dd>The square root of <code>animal</code>.</dd>
+      </dl>
+
+      <h4>Raises</h4>
+      <dl>
+        <dt><strong>ValueError</strong></dt>
+        <dd>If <code>animal</code> has no known square root.</dd>
+      </dl>
+
+      <h4>See Also</h4>
+      <p><a href="#add"><code>add</code></a> : Add two animals together.</p>
+
+      <h4>Notes</h4>
+      <p>[Background, theory, or edge cases.]</p>
+
+      <h4>Examples</h4>
+<pre><code>GET /api/sqrt?animal=cat
+
+{"result": "kitten"}</code></pre>
+    </article>
+
+    <article class="function" id="add">
+      <h3 class="signature">add(<em>a</em>, <em>b</em>)</h3>
+      <p>Add two animals together.</p>
+
+      <h4>Parameters</h4>
+      <dl>
+        <dt><strong>a</strong> : <span>str</span></dt>
+        <dd>The first animal.</dd>
+        <dt><strong>b</strong> : <span>str</span></dt>
+        <dd>The second animal.</dd>
+      </dl>
+
+      <h4>Returns</h4>
+      <dl>
+        <dt><strong>result</strong> : <span>str</span></dt>
+        <dd>The combined animal.</dd>
+      </dl>
+
+      <h4>Examples</h4>
+<pre><code>GET /api/add?a=cat&amp;b=dog
+
+{"result": "cat-dog"}</code></pre>
+    </article>
+  </section>
+
+  <section id="category-two">
+    <h2>[Category two]</h2>
+    <p>[What these functions have in common.]</p>
+    <table>
+      <thead><tr><th>Function</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><a href="#function-name"><code>[function_name(x)]</code></a></td><td>[One-line summary.]</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Blank function template: copy from here ... -->
+    <article class="function" id="function-name">
+      <h3 class="signature">[function_name](<em>[x]</em>)</h3>
+      <p>[One-line summary.]</p>
+
+      <h4>Parameters</h4>
+      <dl>
+        <dt><strong>[x]</strong> : <span>[type]</span></dt>
+        <dd>[Description.]</dd>
+      </dl>
+
+      <h4>Returns</h4>
+      <dl>
+        <dt><strong>result</strong> : <span>[type]</span></dt>
+        <dd>[Description.]</dd>
+      </dl>
+
+      <h4>Raises</h4>
+      <dl>
+        <dt><strong>[ErrorName]</strong></dt>
+        <dd>[When it happens.]</dd>
+      </dl>
+
+      <h4>See Also</h4>
+      <p><a href="#sqrt"><code>[other_function]</code></a> : [How it is related.]</p>
+
+      <h4>Notes</h4>
+      <p>[Background, theory, or edge cases.]</p>
+
+      <h4>Examples</h4>
+<pre><code>GET /api/[function_name]?[x]=[value]
+
+{"result": "[output]"}</code></pre>
+    </article>
+    <!-- ... to here -->
+  </section>
+
+  <!-- ==================== MORE ==================== -->
+
+  <section id="errors">
+    <h2>Errors</h2>
+    <p>Failed requests return a message in the form <code>{"error": "..."}</code>.</p>
+    <table>
+      <thead><tr><th>Status</th><th>Cause</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr><td>400</td><td>Missing, unexpected, or invalid argument.</td><td>[How to fix it.]</td></tr>
+        <tr><td>404</td><td>No function with that name.</td><td>[How to fix it.]</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="glossary">
+    <h2>Glossary</h2>
+    <dl>
+      <dt><strong>[Term]</strong></dt>
+      <dd>[Definition.]</dd>
+    </dl>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+    <h3>[Question?]</h3>
+    <p>[Answer.]</p>
+  </section>
+
+  <section id="release-notes">
+    <h2>Release notes</h2>
+    <h3>v1.0</h3>
+    <ul>
+      <li>[What changed.]</li>
+    </ul>
+  </section>
+</main>
+
+</div>
+</body>
+</html>
